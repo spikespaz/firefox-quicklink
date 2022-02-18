@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Quicklink Firefox Extension",
     "version": "0.1.3",
-    "description": "Speed up navigations by automatically prefetching in-viewport links ⚡",
+    "description": "Speed up navigations by prefetching links with Google Chrome Labs' Quicklink script.",
     "homepage_url": "https://github.com/spikespaz/firefox-quicklink",
     "icons": {
         "16": "icons/16.png",
