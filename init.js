@@ -22,7 +22,7 @@ function initQuicklink(data) {
         // Ignore url paths, extensions and attributes from user's settings.
         ignores: [
             uri => ignoreUrlPatterns.some(urlPattern => uri.toLowerCase().includes(urlPattern)),
-            (uri, elem) => ignoreElemAttributes.some(elemAttr => elem.hasAttribute(elemAttr)),
+            (_, elem) => ignoreElemAttributes.some(elemAttr => elem.hasAttribute(elemAttr)),
             uri => uri.includes('#')
         ],
         // limit to 5 elements per page

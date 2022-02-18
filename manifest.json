@@ -15,7 +15,6 @@
     ],
     "background": {
         "scripts": [
-            "helpers.js",
             "background.js"
         ],
         "persistent": false
