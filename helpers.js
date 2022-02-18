@@ -4,7 +4,7 @@
  */
 function initializeSettings(callback) {
 
-    chrome.storage.sync.clear(function() {
+    chrome.storage.sync.clear(function () {
         const url = chrome.runtime.getURL('data/config.json');
 
         fetch(url)
@@ -48,7 +48,7 @@ function updateSettingsInLocalStorage(localStorageJsonConfig, fileJsonConfig) {
     localStorageJsonConfig.ignoreElemAttributes = getUpdatedField(localStorageJsonConfig.ignoreElemAttributes, fileJsonConfig.ignoreElemAttributes);
     localStorageJsonConfig.ignoreUrlProtocols = getUpdatedField(localStorageJsonConfig.ignoreUrlProtocols, fileJsonConfig.ignoreUrlProtocols);
 
-    chrome.storage.sync.clear(function() {
+    chrome.storage.sync.clear(function () {
         chrome.storage.sync.set(localStorageJsonConfig);
     });
 }
@@ -86,7 +86,7 @@ function parseInputField(field) {
     let parsedField = field.replace(/ /g, '').split(',');
 
     //remove empty elements
-    return parsedField.filter(function(el) {
+    return parsedField.filter(function (el) {
         return el != null && el != '';
     });
 }

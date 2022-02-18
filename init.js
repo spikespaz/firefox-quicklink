@@ -1,6 +1,6 @@
- // Content-script that runs every time a new url is opened. 
- // Calls initQuicklink() to initialize and inject quicklink in the current page.
-chrome.storage.sync.get(function(data) {
+// Content-script that runs every time a new url is opened. 
+// Calls initQuicklink() to initialize and inject quicklink in the current page.
+chrome.storage.sync.get(function (data) {
     initQuicklink(data);
 });
 

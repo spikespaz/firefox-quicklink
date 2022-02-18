@@ -15,19 +15,31 @@
     "signin",
     "signup",
     "apk",
-	"release",
-	"amazon",
-	"google",
-	"shopping",
-	"checkout",
-	"shop",
-	"cart",
-	"ads",
-	"ticket",
-	"captcha"
+    "release",
+    "amazon",
+    "google",
+    "shopping",
+    "checkout",
+    "shop",
+    "cart",
+    "ads",
+    "ticket",
+    "captcha"
   ],
-  "ignoreFileExtensions": [".zip", ".pdf", ".mp4"],
-  "ignoreUrlProtocols": ["http:", "tel:", "mailto:", "javascript:", "market:"],
-  "ignoreElemAttributes": ["noprefetch"],
+  "ignoreFileExtensions": [
+    ".zip",
+    ".pdf",
+    ".mp4"
+  ],
+  "ignoreUrlProtocols": [
+    "http:",
+    "tel:",
+    "mailto:",
+    "javascript:",
+    "market:"
+  ],
+  "ignoreElemAttributes": [
+    "noprefetch"
+  ],
   "googleAnalyticsEnabled": true
 }

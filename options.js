@@ -12,14 +12,14 @@ let isGoogleAnalyticsEnabled = true;
 // When save settings button is clicked, calls saveSettingsToLocalStorage() (defined in helpers.js)
 // Passes a showMsg() callback to inform the user settings have been saved.
 const saveSettingsBtn = document.getElementById('save-settings-btn');
-saveSettingsBtn.onclick = function() {
+saveSettingsBtn.onclick = function () {
 
     saveSettingsToLocalStorage({
         ignoreUrlPaths: parseInputField(ignoreUrlPathsInput.value),
         ignoreFileExtensions: parseInputField(ignoreFileExtensionsInput.value),
         ignoreElemAttributes: parseInputField(ignoreElemAttributesInput.value),
         ignoreUrlProtocols: parseInputField(ignoreUrlProtocolsInput.value)
-    }, function() {
+    }, function () {
         showMsg("Settings saved");
         sendAnalytics('event', 'settings-page', 'save');
     });
@@ -29,17 +29,17 @@ saveSettingsBtn.onclick = function() {
 // When save settings button is clicked, calls saveSettingsToLocalStorage() (defined in helpers.js).
 // Passes a showMsg() callback.
 const resetSettingsBtn = document.getElementById('reset-settings-btn');
-resetSettingsBtn.onclick = function() {
-    initializeSettings(function() {
+resetSettingsBtn.onclick = function () {
+    initializeSettings(function () {
         resetSettingsForm();
         sendAnalytics('event', 'settings-page', 'reset');
     });
 }
 
-optOutAnalyticsCheckbox.onchange = function() {
+optOutAnalyticsCheckbox.onchange = function () {
     chrome.storage.sync.set({
         googleAnalyticsEnabled: !optOutAnalyticsCheckbox.checked
-    }, function() {
+    }, function () {
         // Inform user and reload extension to make opt-out change immediate.
         alert('You have opted ' + (optOutAnalyticsCheckbox.checked ? 'out' : 'in') + ' Google Analytics.\nThis window will close so the extension can be reloaded.');
 
@@ -69,7 +69,7 @@ function initializePage() {
  */
 function initializeSettingsForm(callback) {
 
-    chrome.storage.sync.get(function(result, callback) {
+    chrome.storage.sync.get(function (result, callback) {
 
         ignoreUrlPathsInput.value = result.ignoreUrlPaths.join(', ');
         ignoreFileExtensionsInput.value = result.ignoreFileExtensions.join(', ');

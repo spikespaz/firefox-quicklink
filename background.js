@@ -4,10 +4,10 @@ let isGoogleAnalyticsEnabled;
  * Runs on extension install. The first time it creates a new local config from config.json. 
  * In subsequent installations, it updates the local config wiht new values in config.json.
  */
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(function () {
 
     //TODO: This code should add the new values in config.js to the existing configuration in local storage.
-    chrome.storage.sync.get(function(result) {
+    chrome.storage.sync.get(function (result) {
 
         //The first time the extension is installed, just initialize settings.
         if (JSON.stringify(result) === JSON.stringify({})) {
@@ -21,7 +21,7 @@ chrome.runtime.onInstalled.addListener(function() {
 /**
  * Reads local configuration. If Google Analytics is enabled, it initializes it.
  */
-chrome.storage.sync.get(function(result) {
+chrome.storage.sync.get(function (result) {
 
     isGoogleAnalyticsEnabled = result.googleAnalyticsEnabled;
 
@@ -33,7 +33,7 @@ chrome.storage.sync.get(function(result) {
 /**
  * Centralizes tracking requests from different parts of the extension.
  */
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
     if (request.msg == 'analytics' && isGoogleAnalyticsEnabled) {
 
@@ -49,9 +49,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
  * Initializes GA.
  */
 function initGoogleAnalytics() {
-    (function(i, s, o, g, r, a, m) {
+    (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
+        i[r] = i[r] || function () {
             (i[r].q = i[r].q || []).push(arguments)
         }, i[r].l = 1 * new Date();
         a = s.createElement(o), m = s.getElementsByTagName(o)[0];
@@ -61,5 +61,5 @@ function initGoogleAnalytics() {
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga')
 
     ga('create', 'UA-150949258-1', 'auto');
-    ga('set', 'checkProtocolTask', function() {});
+    ga('set', 'checkProtocolTask', function () { });
 }
