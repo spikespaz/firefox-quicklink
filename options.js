@@ -9,7 +9,6 @@ const ignoreUrlProtocolsInput = document.getElementById('ignore-url-protocols');
 // Passes a showMsg() callback to inform the user settings have been saved.
 const saveSettingsBtn = document.getElementById('save-settings-btn');
 saveSettingsBtn.onclick = function () {
-
     saveSettingsToLocalStorage({
         ignoreUrlPaths: parseInputField(ignoreUrlPathsInput.value),
         ignoreFileExtensions: parseInputField(ignoreFileExtensionsInput.value),
@@ -33,8 +32,6 @@ resetSettingsBtn.onclick = function () {
 // Initialize settings UI controls to its default values.
 initializePage();
 
-
-
 /** PAGE FUNCTIONS **/
 
 /**
@@ -48,10 +45,8 @@ function initializePage() {
  * Initializes user settings UI controls.
  * @param {Object} callback - function to execute when settings are initialized successfully.
  */
-function initializeSettingsForm(callback) {
-
-    chrome.storage.sync.get(function (result, callback) {
-
+function initializeSettingsForm(_) {
+    browser.storage.sync.get(function (result, callback) {
         ignoreUrlPathsInput.value = result.ignoreUrlPaths.join(', ');
         ignoreFileExtensionsInput.value = result.ignoreFileExtensions.join(', ');
         ignoreElemAttributesInput.value = result.ignoreElemAttributes.join(', ');
@@ -61,14 +56,13 @@ function initializeSettingsForm(callback) {
             callback();
         }
     });
-
 }
 
 /**
  * Called when settings are reset to defaults, to initialize the settings UI controls.
  */
 function resetSettingsForm() {
-    initializeSettingsForm(showMsg("Settings reset to defaults"));
+    initializeSettingsForm(showMsg('Settings reset to defaults'));
 }
 
 /**
@@ -76,9 +70,7 @@ function resetSettingsForm() {
  * @param {Object} msg - The text to show in the toast message.
  */
 function showMsg(msg) {
-
     const optionsMsg = document.getElementsByClassName('options-msg')[0];
     optionsMsg.innerHTML = msg;
     optionsMsg.style.display = 'block';
-
 }

@@ -3,9 +3,8 @@
  * @param {Object} callback - function to execute when settings are saved successfully
  */
 function initializeSettings(callback) {
-
-    chrome.storage.sync.clear(function () {
-        const url = chrome.runtime.getURL('data/config.json');
+    browser.storage.sync.clear(function () {
+        const url = browser.runtime.getURL('data/config.json');
 
         fetch(url)
             .then((response) => response.json())
@@ -18,8 +17,7 @@ function initializeSettings(callback) {
  * @param {Object} localStorageJsonConfig - current settings in local storage
  */
 function updateSettings(localStorageJsonConfig) {
-
-    const url = chrome.runtime.getURL('data/config.json');
+    const url = browser.runtime.getURL('data/config.json');
 
     fetch(url)
         .then((response) => response.json())
@@ -33,7 +31,7 @@ function updateSettings(localStorageJsonConfig) {
  * @param {Object} callback - function to execute if settings are saved successfully
  */
 function saveSettingsToLocalStorage(jsonConifg, callback) {
-    chrome.storage.sync.set(jsonConifg, callback);
+    browser.storage.sync.set(jsonConifg, callback);
 }
 
 /**
@@ -42,14 +40,13 @@ function saveSettingsToLocalStorage(jsonConifg, callback) {
  * @param {Object} fileJsonConfig - configuration in config.json
  */
 function updateSettingsInLocalStorage(localStorageJsonConfig, fileJsonConfig) {
-
     localStorageJsonConfig.ignoreUrlPaths = getUpdatedField(localStorageJsonConfig.ignoreUrlPaths, fileJsonConfig.ignoreUrlPaths);
     localStorageJsonConfig.ignoreFileExtensions = getUpdatedField(localStorageJsonConfig.ignoreFileExtensions, fileJsonConfig.ignoreFileExtensions);
     localStorageJsonConfig.ignoreElemAttributes = getUpdatedField(localStorageJsonConfig.ignoreElemAttributes, fileJsonConfig.ignoreElemAttributes);
     localStorageJsonConfig.ignoreUrlProtocols = getUpdatedField(localStorageJsonConfig.ignoreUrlProtocols, fileJsonConfig.ignoreUrlProtocols);
 
-    chrome.storage.sync.clear(function () {
-        chrome.storage.sync.set(localStorageJsonConfig);
+    browser.storage.sync.clear(function () {
+        browser.storage.sync.set(localStorageJsonConfig);
     });
 }
 
@@ -76,7 +73,6 @@ function getUpdatedField(localStorageField, fileField) {
  * @param {Object} field - The string obtained for teh field in the input form.
  */
 function parseInputField(field) {
-
     //remove whitespaces and transform comma separated string into array
     let parsedField = field.replace(/ /g, '').split(',');
 
