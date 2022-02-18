@@ -29,7 +29,4 @@ function initQuicklink(data) {
         //limit to 5 elements per page
         limit: 5
     });
-
-    //send event to background script, for tracking purposes
-    chrome.runtime.sendMessage({ msg: 'analytics', type: 'event', category: 'quicklink-library', action: 'init' });
 }

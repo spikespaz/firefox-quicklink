@@ -4,10 +4,6 @@ const ignoreUrlPathsInput = document.getElementById('ignore-url-paths');
 const ignoreFileExtensionsInput = document.getElementById('ignore-file-extensions');
 const ignoreElemAttributesInput = document.getElementById('ignore-element-attributes');
 const ignoreUrlProtocolsInput = document.getElementById('ignore-url-protocols');
-const optOutAnalyticsCheckbox = document.getElementById('opt-out-analytics');
-
-let isGoogleAnalyticsEnabled = true;
-
 
 // When save settings button is clicked, calls saveSettingsToLocalStorage() (defined in helpers.js)
 // Passes a showMsg() callback to inform the user settings have been saved.
@@ -20,8 +16,7 @@ saveSettingsBtn.onclick = function () {
         ignoreElemAttributes: parseInputField(ignoreElemAttributesInput.value),
         ignoreUrlProtocols: parseInputField(ignoreUrlProtocolsInput.value)
     }, function () {
-        showMsg("Settings saved");
-        sendAnalytics('event', 'settings-page', 'save');
+        showMsg('Settings saved');
     });
 }
 
@@ -32,19 +27,6 @@ const resetSettingsBtn = document.getElementById('reset-settings-btn');
 resetSettingsBtn.onclick = function () {
     initializeSettings(function () {
         resetSettingsForm();
-        sendAnalytics('event', 'settings-page', 'reset');
-    });
-}
-
-optOutAnalyticsCheckbox.onchange = function () {
-    chrome.storage.sync.set({
-        googleAnalyticsEnabled: !optOutAnalyticsCheckbox.checked
-    }, function () {
-        // Inform user and reload extension to make opt-out change immediate.
-        alert('You have opted ' + (optOutAnalyticsCheckbox.checked ? 'out' : 'in') + ' Google Analytics.\nThis window will close so the extension can be reloaded.');
-
-        chrome.runtime.reload();
-        window.close();
     });
 }
 
@@ -60,7 +42,6 @@ initializePage();
  */
 function initializePage() {
     initializeSettingsForm();
-    sendAnalytics('pageview', 'options.html');
 }
 
 /**
@@ -75,7 +56,6 @@ function initializeSettingsForm(callback) {
         ignoreFileExtensionsInput.value = result.ignoreFileExtensions.join(', ');
         ignoreElemAttributesInput.value = result.ignoreElemAttributes.join(', ');
         ignoreUrlProtocolsInput.value = result.ignoreUrlProtocols.join(', ');
-        optOutAnalyticsCheckbox.checked = !result.googleAnalyticsEnabled;
 
         if (callback) {
             callback();

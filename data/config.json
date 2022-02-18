@@ -40,6 +40,5 @@
   ],
   "ignoreElemAttributes": [
     "noprefetch"
-  ],
-  "googleAnalyticsEnabled": true
+  ]
 }

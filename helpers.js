@@ -71,11 +71,6 @@ function getUpdatedField(localStorageField, fileField) {
     return mergedArraysForField;
 }
 
-function sendAnalytics(trackingType, trackingCategory, trackingAction) {
-    chrome.runtime.sendMessage({ msg: 'analytics', type: trackingType, category: trackingCategory, action: trackingAction });
-}
-
-
 /**
  * Parses the input field into an array of strings, without spaces and wihtout emtpy elements.
  * @param {Object} field - The string obtained for teh field in the input form.
